@@ -30,14 +30,43 @@ namespace MouseMoveByKey {
 
         private void CheckKeyDown_Tick(object sender, EventArgs e) {
             if(chkActivate.Checked) {
+                //
+                // Move mouse direction handling
+                //
                 if(KeyboardHelper.LeftPressed) {
-                    MouseHelper.MoveMouse(MoveDirection.Left, sliderSensitivity.Value);
-                } else if(KeyboardHelper.RightPressed) {
-                    MouseHelper.MoveMouse(MoveDirection.Right, sliderSensitivity.Value);
-                } else if(KeyboardHelper.UpPressed) {
-                    MouseHelper.MoveMouse(MoveDirection.Up, sliderSensitivity.Value);
-                } else if(KeyboardHelper.DownPressed) {
-                    MouseHelper.MoveMouse(MoveDirection.Down, sliderSensitivity.Value);
+                    MouseHelper.MouseEventHandler(MouseEvent.Left, sliderSensitivity.Value);
+                }
+                if(KeyboardHelper.RightPressed) {
+                    MouseHelper.MouseEventHandler(MouseEvent.Right, sliderSensitivity.Value);
+                }
+                if (KeyboardHelper.UpPressed)
+                {
+                    MouseHelper.MouseEventHandler(MouseEvent.Up, sliderSensitivity.Value);
+                }
+                if (KeyboardHelper.DownPressed) {
+                    MouseHelper.MouseEventHandler(MouseEvent.Down, sliderSensitivity.Value);
+                }
+
+                //
+                // Left mouse button handling
+                //
+                if (KeyboardHelper.LButtonPressed && MouseHelper.lButtonCurrentlyPressed == false) {
+                    MouseHelper.MouseEventHandler(MouseEvent.LButton, 0);
+                }
+                else if (!KeyboardHelper.LButtonPressed && MouseHelper.lButtonCurrentlyPressed == true) {
+                    MouseHelper.MouseEventHandler(MouseEvent.LButton, 0);
+                }
+
+                //  
+                // Right mouse button handling
+                //
+                if (KeyboardHelper.RButtonPressed && MouseHelper.rButtonCurrentlyPressed == false)
+                {
+                    MouseHelper.MouseEventHandler(MouseEvent.RButton, 0);
+                }
+                else if (!KeyboardHelper.RButtonPressed && MouseHelper.rButtonCurrentlyPressed == true)
+                {
+                    MouseHelper.MouseEventHandler(MouseEvent.RButton, 0);
                 }
             }
         }

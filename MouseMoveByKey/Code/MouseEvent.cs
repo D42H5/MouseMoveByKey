@@ -1,8 +1,10 @@
 ﻿namespace MouseMoveByKey {
-    public enum MoveDirection {
+    public enum MouseEvent {
         Up,
         Down,
         Left,
-        Right
+        Right,
+        LButton,
+        RButton
     }
 }

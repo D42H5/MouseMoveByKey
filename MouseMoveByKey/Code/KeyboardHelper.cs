@@ -14,11 +14,15 @@ namespace MouseMoveByKey {
         public static bool RightPressed { get; set; } = false;
         public static bool UpPressed { get; set; } = false;
         public static bool DownPressed { get; set; } = false;
+        public static bool LButtonPressed { get; set; } = false;
+        public static bool RButtonPressed { get; set; } = false;
 
         private static Keys leftKeyPressed;
         private static Keys rightKeyPressed;
         private static Keys upKeyPressed;
         private static Keys downKeyPressed;
+        private static Keys lButtonKeyPressed;
+        private static Keys rButtonKeyPressed;
 
         public static KeyBindings CurrentKeyBindings { get; set; } = new KeyBindings();
 
@@ -38,48 +42,94 @@ namespace MouseMoveByKey {
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam) {
             if(nCode >= 0) {
                 int vkCode = Marshal.ReadInt32(lParam);
-                if(wParam == (IntPtr)WM_KEYDOWN) {
-                    foreach(var key in CurrentKeyBindings.LeftKeyBindings) {
-                        if((Keys)vkCode == key) {
+                if (wParam == (IntPtr)WM_KEYDOWN)
+                {
+                    foreach (var key in CurrentKeyBindings.LeftKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
                             LeftPressed = true;
                             leftKeyPressed = key;
                             break;
                         }
                     }
-                    foreach(var key in CurrentKeyBindings.RightKeyBindings) {
-                        if((Keys)vkCode == key) {
+                    foreach (var key in CurrentKeyBindings.RightKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
                             RightPressed = true;
                             rightKeyPressed = key;
                             break;
                         }
                     }
-                    foreach(var key in CurrentKeyBindings.UpKeyBindings) {
-                        if((Keys)vkCode == key) {
+                    foreach (var key in CurrentKeyBindings.UpKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
                             UpPressed = true;
                             upKeyPressed = key;
                             break;
                         }
                     }
-                    foreach(var key in CurrentKeyBindings.DownKeyBindings) {
-                        if((Keys)vkCode == key) {
+                    foreach (var key in CurrentKeyBindings.DownKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
                             DownPressed = true;
                             downKeyPressed = key;
                             break;
                         }
                     }
-                } else if(wParam == (IntPtr)WM_KEYUP) {
-                    if((Keys)vkCode == leftKeyPressed) {
+                    foreach (var key in CurrentKeyBindings.LButtonKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
+                            LButtonPressed = true;
+                            lButtonKeyPressed = key;
+                            break;
+                        }
+                    }
+                    foreach (var key in CurrentKeyBindings.RButtonKeyBindings)
+                    {
+                        if ((Keys)vkCode == key)
+                        {
+                            RButtonPressed = true;
+                            rButtonKeyPressed = key;
+                            break;
+                        }
+                    }
+                }
+                else if (wParam == (IntPtr)WM_KEYUP)
+                {
+                    if ((Keys)vkCode == leftKeyPressed)
+                    {
                         LeftPressed = false;
                         leftKeyPressed = Keys.None;
-                    } else if((Keys)vkCode == rightKeyPressed) {
+                    }
+                    else if ((Keys)vkCode == rightKeyPressed)
+                    {
                         RightPressed = false;
                         rightKeyPressed = Keys.None;
-                    } else if((Keys)vkCode == upKeyPressed) {
+                    }
+                    else if ((Keys)vkCode == upKeyPressed)
+                    {
                         UpPressed = false;
                         upKeyPressed = Keys.None;
-                    } else if((Keys)vkCode == downKeyPressed) {
+                    }
+                    else if ((Keys)vkCode == downKeyPressed)
+                    {
                         DownPressed = false;
                         downKeyPressed = Keys.None;
+                    }
+                    else if ((Keys)vkCode == lButtonKeyPressed)
+                    {
+                        LButtonPressed = false;
+                        lButtonKeyPressed = Keys.None;
+                    }
+                    else if ((Keys)vkCode == rButtonKeyPressed)
+                    {
+                        RButtonPressed = false;
+                        rButtonKeyPressed = Keys.None;
                     }
                 }
             }
