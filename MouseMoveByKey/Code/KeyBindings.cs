@@ -7,5 +7,7 @@ namespace MouseMoveByKey {
         public List<Keys> DownKeyBindings { get; set; } = new List<Keys>();
         public List<Keys> LeftKeyBindings { get; set; } = new List<Keys>();
         public List<Keys> RightKeyBindings { get; set; } = new List<Keys>();
+        public List<Keys> LButtonKeyBindings { get; set; } = new List<Keys>();
+        public List<Keys> RButtonKeyBindings { get; set; } = new List<Keys>();
     }
 }

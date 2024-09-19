@@ -16,6 +16,8 @@ namespace MouseMoveByKey {
             KeyBindings.DownKeyBindings.ForEach(k => listDownKeys.Items.Add(k));
             KeyBindings.LeftKeyBindings.ForEach(k => listLeftKeys.Items.Add(k));
             KeyBindings.RightKeyBindings.ForEach(k => listRightKeys.Items.Add(k));
+            KeyBindings.LButtonKeyBindings.ForEach(k => listLButtonKeys.Items.Add(k));
+            KeyBindings.RButtonKeyBindings.ForEach(k => listRButtonKeys.Items.Add(k));
         }
 
         private void SaveKeyBindings() {
@@ -24,6 +26,8 @@ namespace MouseMoveByKey {
             KeyBindings.DownKeyBindings = listDownKeys.Items.Cast<Keys>().ToList();
             KeyBindings.LeftKeyBindings = listLeftKeys.Items.Cast<Keys>().ToList();
             KeyBindings.RightKeyBindings = listRightKeys.Items.Cast<Keys>().ToList();
+            KeyBindings.LButtonKeyBindings = listLButtonKeys.Items.Cast<Keys>().ToList();
+            KeyBindings.RButtonKeyBindings = listRButtonKeys.Items.Cast<Keys>().ToList();
         }
 
         private void AddKey(ListBox list) {
@@ -53,6 +57,9 @@ namespace MouseMoveByKey {
             Close();
         }
 
+        //
+        // Add Button handling
+        //
         private void btnAddUpKey_Click(object sender, EventArgs e) {
             AddKey(listUpKeys);
         }
@@ -69,6 +76,19 @@ namespace MouseMoveByKey {
             AddKey(listRightKeys);
         }
 
+        private void btnAddLButtonKey_Click(object sender, EventArgs e)
+        {
+            AddKey(listLButtonKeys);
+        }
+
+        private void btnAddRButtonKey_Click(object sender, EventArgs e)
+        {
+            AddKey(listRButtonKeys);
+        }
+
+        //
+        // Clear button handling
+        //
         private void btnClearUpKey_Click(object sender, EventArgs e) {
             RemoveKey(listUpKeys);
         }
@@ -83,6 +103,16 @@ namespace MouseMoveByKey {
 
         private void btnClearRightKey_Click(object sender, EventArgs e) {
             RemoveKey(listRightKeys);
+        }
+
+        private void btnClearLButtonKey_Click(object sender, EventArgs e)
+        {
+            RemoveKey(listLButtonKeys);
+        }
+
+        private void btnClearRButtonKey_Click(object sender, EventArgs e)
+        {
+            RemoveKey(listRButtonKeys);
         }
     }
 }
